@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Make Payment{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Make Payment</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Bill ID</label>
+            <input type="text" class="form-control" value="{{ bill.bill_id }}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label>Amount</label>
+            <input type="text" class="form-control" value="RM {{ bill.amount|floatformat:2 }}" readonly>
+        </div>
+        
+        <div class="form-group">
+            <label for="payment_method">Payment Method</label>
+            <select class="form-control" id="payment_method" name="payment_method" required>
+                <option value="credit_card">Credit Card</option>
+                <option value="fpx">FPX Online Banking</option>
+                <option value="tng">Touch 'n Go eWallet</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Pay Now</button>
+    </form>
+</div>
+{% endblock %}

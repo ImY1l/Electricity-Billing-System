@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Support Center{% endblock %}
+
+{% block content %}
+
+<!-- Navigation Bar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Support Center</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- Support Main Section -->
+<div class="support-main container mt-5">
+    <!-- Welcome Message -->
+    <div class="welcome-message text-center mb-4">
+        <h1><i class="fas fa-headset"></i> Welcome to Support Center!</h1>
+        <p class="lead">Efficiently manage customer inquiries, billing, and feedback.</p>
+    </div>
+
+<div class="container">
+    <div class="row justify-content-center">  <!-- Added row with centering -->
+
+        <!-- View Customer Bills Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Customer Bills</h5>
+                    <p class="card-text">Access and manage customer billing details.</p>
+                    <a href="{% url 'view_bills_admin' %}" class="btn btn-primary">Manage Bills</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Customer Feedback Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Customer Feedback</h5>
+                    <p class="card-text">Review and manage customer feedback.</p>
+                    <a href="{% url 'view_feedback_admin' %}" class="btn btn-info">Manage Feedback</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resolve Customer Issues Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Resolve Customer Issues</h5>
+                    <p class="card-text">Track and resolve reported issues.</p>
+                    <a href="{% url 'customer_issues' %}" class="btn btn-warning">Manage Issues</a>
+                </div>
+            </div>
+        </div>
+
+        {% comment %}
+
+            <!-- Move Reset Password inside the same row -->
+        <div class="col-md-4 mb-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <i class="fas fa-key fa-3x mb-3"></i>
+                        <h5>Reset Password</h5>
+                        <p>Change or reset your password.</p>
+                        <a href="{% url 'change_password' %}" class="btn btn-secondary">Reset Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcomment %}
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock %}
+
+
+

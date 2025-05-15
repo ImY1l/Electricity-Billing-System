@@ -1,0 +1,65 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="container">
+    <br />
+    {% if is_customer %}
+    <h2>Customer Menu</h2>
+    <div class="list-group">
+        <a href="{% url 'view_bills' %}" class="list-group-item list-group-item-action">
+            View Billing Information
+        </a>
+        <a href="{% url 'make_payment' %}" class="list-group-item list-group-item-action">
+            Make Payment
+        </a>
+        <a href="{% url 'submit_feedback' %}" class="list-group-item list-group-item-action">
+            Provide Feedback
+        </a>
+        <a href="{% url 'submit_issue' %}" class="list-group-item list-group-item-action">
+            Report Issue
+        </a>
+    </div>
+
+    {% elif is_utility %}
+    <h2>Utility Provider Menu</h2>
+    <div class="list-group">
+     
+    </div>
+
+    {% elif is_support_admin %}
+    <h2>Support Menu</h2>
+    <div class="list-group">
+        <a href="{% url 'customer_issues' %}" class="list-group-item list-group-item-action">
+            Resolve Billing Issues
+        </a>
+        <a href="{% url 'view_feedback_admin' %}" class="list-group-item list-group-item-action">
+            Analyze Customer Feedback
+        </a>
+        <a href="{% url 'view_bills_admin' %}" class="list-group-item list-group-item-action">
+            Bills Management 
+        </a>
+    </div>
+
+    {% elif is_staff %}
+    <h2>Staff Menu</h2>
+    <div class="list-group">
+        <a href="{% url 'track_bills' %}" class="list-group-item list-group-item-action">
+            Track Overdue Bills
+        </a>
+        <a href="{% url 'usage_reports' %}" class="list-group-item list-group-item-action">
+            Analyze Usage Trends
+        </a>
+        <a href="{% url 'manage_customers' %}" class="list-group-item list-group-item-action">
+            Maintain Customer Records
+        </a>
+    </div>
+
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        <h4>Undefined User Role</h4>
+        <p>Please contact system administrator</p>
+        <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

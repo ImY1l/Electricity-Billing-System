@@ -1,0 +1,81 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <form action="{% url 'login' %}" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h4>Use a local account to log in.</h4>
+                <hr />
+
+                {% if form.errors %}
+                    <ul class="alert alert-danger">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                    <label for="id_username" class="col-md-2 control-label">User name</label>
+                    <div class="col-md-10">
+                        <input type="text" id="id_username" name="username" class="form-control" placeholder="Enter your username" required>
+                        {% for error in form.username.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                    <label for="id_password" class="col-md-2 control-label">Password</label>
+                    <div class="col-md-10">
+                        <input type="password" id="id_password" name="password" class="form-control" placeholder="Enter your password" required>
+                        {% for error in form.password.errors %}
+                            <span class="text-danger">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-primary">
+                    </div>
+                </div>
+
+                {% if messages %}
+                    <ul class="alert alert-info">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <!-- Forgot Password & Registration Links -->
+                <div class="form-group mt-3">
+                    <div class="col-md-offset-2 col-md-10 d-flex justify-content-between">
+                        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                        <span>|</span>
+                        <a href="{% url 'validate_meter' %}" class="text-primary">New Customer? Register Here</a>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+    </div>
+
+    <div class="col-md-4">
+        <section id="socialLoginForm"></section>
+    </div>
+</div>
+{% endblock %}

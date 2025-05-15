@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Utility Provider Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="text-center">Meter Readings and Tariff</h2>
+    {% if messages %}
+    <div class="container">
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} text-center">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+<div class="d-flex justify-content-center gap-3 mb-4">
+    <a href="{% url 'utility_dashboard' %}" class="btn btn-secondary rounded-pill px-4">Home</a>
+    <button class="btn btn-primary rounded-pill px-4" id="showUpdateForm">Update Rates</button>
+</div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>TARIFF CATEGORY</th>
+                    <th>UNIT</th>
+                    <th>CURRENT RATE (sen/kWh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tariff in tariffs %}
+                <tr>
+                    <td>{{ tariff.category }}</td>
+                    <td>{{ tariff.get_category_display }}</td>
+                    <td>{{ tariff.unit }}</td>
+                    <td>{{ tariff.rate }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <input type="checkbox" id="toggleUpdateForm" style="display: none;">
+
+    
+    <div id="updateForm" class="mt-4 p-4 border rounded bg-light update-form" style="display: none;">
+        <h3 class="text-center">Update Tariff Rate</h3>
+        <form method="POST" action="{% url 'update_tariff' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="tariffSelect" class="form-label">Select Tariff Category:</label>
+                <select name="category" class="form-select" required>
+                    {% for tariff in tariffs %}
+                    <option value="{{ tariff.category }}">{{ tariff.get_category_display }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="new_rate" class="form-label">New Tariff Rate (sen/kWh):</label>
+                <input type="text" name="new_rate" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    
+    <style>
+        #toggleUpdateForm:checked + #updateForm {
+            display: block !important;
+        }
+    </style>
+
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("showUpdateForm").addEventListener("click", function(event) {
+                event.preventDefault();
+                var updateForm = document.getElementById("updateForm");
+    
+                if (updateForm.style.display === "none" || updateForm.style.display === "") {
+                    updateForm.style.display = "block";
+                    updateForm.scrollIntoView({ behavior: "smooth" });
+                } else {
+                    updateForm.style.display = "none";
+                }
+            });
+        });
+    </script>
+    
+
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>Customer Account Details</h2>
+
+<h4>Customer Info</h4>
+<p><strong>Name:</strong> {{ customer.username }}</p>
+<p><strong>Email:</strong> {{ customer.email }}</p>
+
+<h4>Billing Information</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Bill Amount</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bill in bills %}
+        <tr>
+            <td>${{ bill.amount }}</td>
+            <td>{{ bill.due_date }}</td>
+            <td>{% if bill.paid %} Paid {% else %} Unpaid {% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h4>Payment History</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Method</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in payments %}
+        <tr>
+            <td>${{ payment.amount }}</td>
+            <td>{{ payment.date }}</td>
+            <td>{{ payment.method }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="btn-group">
+    <a href="{% url 'utility_dashboard' %}" class="btn btn-secondary">Home</a>
+    <a href="{% url 'track_overdue_bills' %}" class="btn btn-primary">Back</a>
+</div>
+
+{% endblock %}

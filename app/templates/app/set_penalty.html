@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Utility Provider Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <h2 class="text-center">Set Penalty Amount</h2>
+    <div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="{% url 'overdue_bills' %}" class="btn btn-secondary rounded-pill px-4">Back</a>
+    </div>
+    
+    <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Set Penalty Amount (RM 200 - RM 500):</label>
+                <input type="number" name="penalty_amount" class="form-control" min="200" max="500" required>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">Apply Penalty</button>
+        </form>
+        {% if error %}
+            <div class="alert alert-danger text-center mt-3">{{ error }}</div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock %}

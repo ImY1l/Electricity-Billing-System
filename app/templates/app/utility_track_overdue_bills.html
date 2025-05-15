@@ -1,0 +1,27 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>Overdue Bills</h2>
+<table>
+    <tr>
+        <th>Customer</th>
+        <th>Amount Due</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>
+    {% for bill in overdue_bills %}
+    <tr>
+        <td>{{ bill.customer.username }}</td>
+        <td>${{ bill.amount }}</td>
+        <td>{{ bill.due_date }}</td>
+        <td>
+            <a href="{% url 'view_bill_details' bill.id %}" class="btn btn-info">View Details</a>
+            <a href="{% url 'set_penalty' bill.id %}" class="btn btn-warning">Set Penalty</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'utility_dashboard' %}" class="btn btn-secondary">Home</a>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Usage Monitoring{% endblock %}
+{% block content %}
+
+
+<div class="container mt-4">
+    <h2 class="bg-dark text-white text-center py-3 mb-3">Usage Monitoring</h2>
+
+    <div class="container mt-4">
+        <!-- Home Button -->
+        <div class="d-flex justify-content-start mb-3">
+            <a href="{% url 'staff_dashboard' %}" class="btn btn-warning">Home</a>
+        </div>
+
+    <form method="GET" action="{% url 'usage_monitoring' %}" class="d-flex justify-content-end align-items-center mb-5">
+        <label for="month" class="mb-0">Select Month: </label>
+        <input type="month" id="month" name="month" class="form-control w-auto" value="{{ selected_month }}">
+        <button type="submit" class="btn btn-warning">Filter</button>
+    </form>
+
+    {% if usagemetrics %}
+    <div class="row">
+        <!-- Card for Total Customers -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Customers</h5>
+                    <p class="card-text">{{ usagemetrics.total_customers }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card for Total Bills -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Bills</h5>
+                    <p class="card-text">{{ usagemetrics.total_bills }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card for Total Usage -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Total Usage</h5>
+                    <p class="card-text">{{ usagemetrics.total_usage|floatformat:2 }} kWh</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card for Average Usage -->
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Average Usage</h5>
+                    <p class="card-text">{{ usagemetrics.avg_usage|floatformat:2 }} kWh</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Please select a month and year to view usage metrics.
+    </div>
+    {% endif %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

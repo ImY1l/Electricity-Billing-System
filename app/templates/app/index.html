@@ -1,0 +1,34 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Welcome to the Electricity Billing System</h1>
+    <p class="lead">Efficiently manage electricity services, billing, payments, and support.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Users</h2>
+        <p><strong>Customers</strong> can create accounts, view billing information, make payments, and provide feedback.</p>
+        <p><strong>Utility Providers</strong> manage meter readings, adjust tariffs, generate accurate bills, and handle overdue payments.</p>
+        <p><strong>Support Administrators</strong> assist customers by resolving billing and payment issues, reviewing feedback, and improving the system.</p>
+        <p><strong>Staff</strong> track overdue bills, analyze usage trends, and maintain customer account records.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Modules</h2>
+        <p><strong>Customer Portal:</strong> View your billing history, make payments, and manage your account.</p>
+        <p><strong>Utility Provider Dashboard:</strong> Update meter readings, adjust tariffs, generate monthly bills, and handle overdue payments.</p>
+        <p><strong>Support Center:</strong> Resolve issues, analyze customer feedback, and improve service quality.</p>
+        <p><strong>Staff Management:</strong> Track overdue payments, monitor usage patterns, and maintain accurate customer records.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>Getting Started</h2>
+        <p>If you are a new user, you can <a href="{% url 'validate_meter' %}">sign up</a> and create your account.</p>
+        <p>If you already have an account, <a href="{% url 'login' %}">log in</a> to access your dashboard.</p>
+    </div>
+</div>
+
+{% endblock %}

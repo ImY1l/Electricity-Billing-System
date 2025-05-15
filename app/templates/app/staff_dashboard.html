@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Staff Dashboard{% endblock %}
+{% block content %}
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Staff Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome Back, {{ user.username }}!</h2>
+    <div class="row">
+        <!-- Manage Customer Accounts Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Customer Accounts</h5>
+                    <p class="card-text">Create, edit, or remove customer accounts.</p>
+                    <a href="{% url 'manage_customer_accounts' %}" class="btn btn-primary">Manage Accounts</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Track Overdue Bills Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Track Overdue Bills</h5>
+                    <p class="card-text">Monitor and follow up on overdue payments.</p>
+                    <a href="{% url 'track_overdue_bills' %}" class="btn btn-danger">Track Bills</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Monitoring Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Usage Monitoring</h5>
+                    <p class="card-text">View and analyze customer electricity usage.</p>
+                    <a href="{% url 'usage_monitoring' %}" class="btn btn-success">Monitor Usage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

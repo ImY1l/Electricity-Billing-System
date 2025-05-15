@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'admin_dashboard' %}">
+            <i class="fas fa-headset"></i> Support Center
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_feedback_admin' %}">
+                        <i class="fas fa-comments"></i> Customer Feedback
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_bills_admin' %}">
+                        <i class="fas fa-file-invoice-dollar"></i> Customer Bills
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-user-shield"></i> {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Title -->
+<div class="container mt-4">
+    <h2 class="mb-3"><i class="fas fa-exclamation-triangle"></i> Issue Management</h2>
+</div>
+
+<!-- Issue List -->
+<div class="container mt-3">
+    <div class="table-responsive">
+        <table class="table table-striped shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Issue Title</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in issues %}
+                <tr>
+                    <td>{{ issue.ticket_id }}</td>
+                    <td>{{ issue.title }}</td>
+                    <td>
+                        <span class="badge 
+                            {% if issue.status == 'Open' %}bg-danger
+                            {% elif issue.status == 'In Progress' %}bg-warning
+                            {% else %}bg-success{% endif %}">
+                            {{ issue.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{% url 'issue_details' issue.issue_id %}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> View
+                        </a>
+                        <a href="{% url 'update_issue_status' issue.issue_id %}" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No issues available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back 
+    </a>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Utility Provider Dashboard{% endblock %}
+{% block content %}
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Utility Provider Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome Back, {{ user.username }}!</h2>
+    <div class="row">
+        <!-- Meter Readings & Tariff -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Meter Readings & Tariff</h5>
+                    <p class="card-text">View and update current tariff rates.</p>
+                    <a href="{% url 'meter_readings' %}" class="btn btn-primary">View Tariffs</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Track Overdue Bills -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Track Overdue Bills</h5>
+                    <p class="card-text">Monitor and manage overdue customer bills.</p>
+                    <a href="{% url 'overdue_bills' %}" class="btn btn-danger">View Overdue Bills</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Schedule Monthly Bills -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Schedule Monthly Bills</h5>
+                    <p class="card-text">Choose a date for automatic bill generation.</p>
+                    <a href="{% url 'schedule_monthly_bills' %}" class="btn btn-success">Schedule Bills</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

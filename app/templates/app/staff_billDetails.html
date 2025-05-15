@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bill-details">
+    <!-- Customer Information -->
+
+    <!-- Home Button -->
+    <div class="d-flex justify-content-start mb-3">
+        <a href="{% url 'staff_dashboard' %}" class="btn btn-warning">Home</a>
+    </div>
+    
+    <div class="customer-info">
+        <h2><i class="fas fa-user"></i> Customer Information</h2>
+        <div class="info-grid">
+            <div><strong>Name:</strong> {{ bill.customer.name }}</div>
+            <div><strong>Email:</strong> {{ bill.customer.email }}</div>
+            <div><strong>Phone:</strong> {{ bill.customer.phone }}</div>
+            <div><strong>Address:</strong> {{ bill.customer.address }}</div>
+        </div>
+    </div>
+
+    <!-- Billing Information -->
+    <div class="billing-info">
+        <h2><i class="fas fa-file-invoice"></i> Billing Information</h2>
+        <div class="info-grid">
+            <div><strong>Bill ID:</strong> {{ bill.id }}</div>
+            <div><strong>Outstanding Balance:</strong> ${{ bill.outstanding_balance }}</div>
+            <div><strong>Total Consumption:</strong> {{ bill.consumption }} kWh</div>
+            <div><strong>Due Date:</strong> {{ bill.due_date }}</div>
+        </div>
+    </div>
+
+    <!-- Payment History -->
+    <div class="payment-history">
+        <h2><i class="fas fa-history"></i> Payment History</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Payment Date</th>
+                    <th>Amount Paid</th>
+                    <th>Payment Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for payment in bill.payments %}
+                <tr>
+                    <td>{{ payment.date }}</td>
+                    <td>${{ payment.amount }}</td>
+                    <td>{{ payment.method }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

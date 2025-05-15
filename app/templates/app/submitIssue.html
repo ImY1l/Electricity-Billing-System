@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Submit Issue{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-primary text-center">Submit an Issue</h2>
+    <p class="text-muted text-center">Please describe the issue you're facing.</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="issue_title"><strong>Issue Title</strong></label>
+                    <input type="text" class="form-control" id="issue_title" name="issue_title" required>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="issue_description"><strong>Issue Description</strong></label>
+                    <textarea class="form-control" id="issue_description" name="issue_description" rows="3" required></textarea>
+                </div>
+
+
+                <div class="form-group mt-3">
+                    <label for="attachment"><strong>Attach File (optional)</strong></label>
+                    <input type="file" class="form-control" id="attachment" name="attachment">
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Submit Issue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

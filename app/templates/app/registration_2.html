@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Step 2: Enter Your Details</h2>
+    <p>Meter ID: <strong>{{ meter_id }}</strong></p>
+
+    <!-- Display form errors here -->
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Error:</strong> Please correct the following issues:
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|title }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.username.label_tag }} {{ form.username }}
+            {% for error in form.username.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label_tag }} {{ form.password }}
+            {% for error in form.password.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.customer_name.label_tag }} {{ form.customer_name }}
+            {% for error in form.customer_name.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.customer_address.label_tag }} {{ form.customer_address }}
+            {% for error in form.customer_address.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.customer_number.label_tag }} {{ form.customer_number }}
+            {% for error in form.customer_number.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.customer_email.label_tag }} {{ form.customer_email }}
+            {% for error in form.customer_email.errors %}<small class="text-danger">{{ error }}</small>{% endfor %}
+        </div>
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+</div>
+{% endblock %}

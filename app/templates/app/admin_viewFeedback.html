@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'admin_dashboard' %}">
+            <i class="fas fa-tachometer-alt"></i> Admin Dashboard
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'view_bills_admin' %}">
+                        <i class="fas fa-file-invoice-dollar"></i> Customer Bills
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'customer_issues' %}">
+                        <i class="fas fa-tools"></i> Customer Issues
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-user-shield"></i> {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                        <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Filter Section -->
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-3"><i class="fas fa-comments"></i> Customer Feedback</h2>
+         <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <form method="GET">
+            <div class="input-group">
+                <select name="rating" class="form-select">
+                    <option value="">All Ratings</option>
+                    <option value="positive" {% if rating_filter == "positive" %}selected{% endif %}>Positive</option>
+                    <option value="neutral" {% if rating_filter == "neutral" %}selected{% endif %}>Neutral</option>
+                    <option value="negative" {% if rating_filter == "negative" %}selected{% endif %}>Negative</option>
+                </select>
+                <button type="submit" class="btn btn-dark"><i class="fas fa-filter"></i> Filter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Feedback List -->
+<div class="container mt-3">
+    <div class="table-responsive">
+        <table class="table table-striped shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Feedback ID</th>
+                    <th>Customer Name</th>
+                    <th>Rating</th>
+                    <th>Comments</th>
+                    <th>Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback.feedback_id  }}</td>
+                    <td>{{ feedback.customer.customer_name  }}</td>
+                    <td>
+                        <div class="rating-stars">
+                            {% for _ in "x"|rjust:feedback.rating %}
+                                <i class="fas fa-star text-warning"></i>
+                            {% endfor %}
+                        </div>
+                    </td>
+                    <td>{{ feedback.comment }}</td>
+                    <td>{{ feedback.feedback_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No feedback available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back 
+    </a>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

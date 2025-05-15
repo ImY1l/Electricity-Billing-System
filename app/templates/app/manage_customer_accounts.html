@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Customer Accounts{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="bg-dark text-white text-center py-3 mb-3">Manage Customer Accounts</h2>
+
+    <!-- Home Button -->
+    <div class="d-flex justify-content-start mb-3">
+        <a href="{% url 'staff_dashboard' %}" class="btn btn-warning">Home</a>
+    </div>
+
+
+    <input type="text" id="searchBar" class="form-control" placeholder="Search accounts..." onkeyup="searchCustomers()">
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.customer_id }}</td>
+                <td>{{ customer.customer_name }}</td>
+                <td>{{ customer.customer_email }}</td>
+                <td>
+                    {% if customer.customer_id %}
+                        <a href="{% url 'staff_viewCustomer' customer.customer_id %}" class="btn btn-warning">View Details</a>
+                        <a href="{% url 'staff_updateCustomer' customer.customer_id %}" class="btn btn-warning">Update Details</a>
+                    {% else %}
+                        <span>Invalid Customer</span>
+                    {% endif %}
+
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="4" class="text-center">No customers found</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+function searchCustomers() {
+    let input = document.getElementById("searchBar").value.toLowerCase();
+    let rows = document.querySelectorAll("tbody tr");
+
+    rows.forEach(row => {
+        let customerId = row.cells[0].textContent.toLowerCase();  // Customer ID (Column 0)
+        let customerName = row.cells[1].textContent.toLowerCase(); // Customer Name (Column 1)
+
+        // Show row if input matches either ID or Name
+        if (customerId.includes(input) || customerName.includes(input)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+}
+</script>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

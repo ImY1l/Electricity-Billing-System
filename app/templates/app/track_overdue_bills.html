@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Track Overdue Bills{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="bg-dark text-white text-center py-3 mb-3">Track Overdue Bills</h2>
+
+    <!-- Home Button -->
+    <div class="d-flex justify-content-start mb-3">
+        <a href="{% url 'staff_dashboard' %}" class="btn btn-warning">Home</a>
+    </div>
+
+
+
+    {% if no_bills %}
+    <div class="alert alert-warning" role="alert">
+        No overdue bills found.
+    </div>
+    {% else %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Bill ID</th>
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bill in overdue_bills %}
+            <tr>
+                <td>{{ bill.bill_id }}</td>  
+                <td>{{ bill.customer_id }}</td>
+                <td>RM {{ bill.amount }}</td>
+                <td>{{ bill.due_date }}</td>
+                <td>
+                    <a href="{% url 'staff_viewBill' bill.bill_id %}" class="btn btn-warning">View Details</a>
+                    <a href="{% url 'staff_setDueDate' bill.bill_id %}" class="btn btn-warning">Set Due Date</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+
+{% endblock %}

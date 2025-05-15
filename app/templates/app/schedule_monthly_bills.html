@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Utility Provider Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2 class="text-center">Schedule Monthly Bills</h2>
+
+    {% if error_message %}
+        <div class="alert alert-danger text-center">{{ error_message }}</div>
+    {% endif %}
+
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <label for="schedule_date">Select a Date:</label>
+        <input type="date" name="schedule_date" required>
+        <button type="submit" class="btn btn-primary">Schedule</button>
+    </form>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'utility_dashboard' %}" class="btn btn-secondary">Home</a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock %}
+

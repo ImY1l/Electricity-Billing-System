@@ -1,0 +1,92 @@
+{% extends 'base.html' %} 
+{% block title %}Customer Dashboard{% endblock %}
+{% block content %}
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Customer Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome Back, {{ customer.customer_name }}!</h2>
+    <div class="row">
+        <!-- View Bills Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Bills</h5>
+                    <p class="card-text">Check your current and past bills.</p>
+                    <a href="{% url 'bills' %}" class="btn btn-primary">Go to Bills</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Make Payment Card (Only one card if bills exist) -->
+        {% if bills %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Make Payment</h5>
+                    <p class="card-text">Pay your bills securely online.</p>
+                    <a href="{% url 'make_payment' bill_id=bills.0.bill_id %}" class="btn btn-success">Make Payment</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Submit Feedback Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Submit Feedback</h5>
+                    <p class="card-text">Share your feedback with us.</p>
+                    <a href="{% url 'submit_feedback' %}" class="btn btn-info">Submit Feedback</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Issue Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Submit Issue</h5>
+                    <p class="card-text">Report any issues you're facing.</p>
+                    <a href="{% url 'submit_issue' %}" class="btn btn-warning">Submit Issue</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Password Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Reset Password</h5>
+                    <p class="card-text">Change or reset your password.</p>
+                    <a href="{% url 'change_password' %}" class="btn btn-secondary">Reset Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}View Bill Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="bg-dark text-white text-center py-3 mb-3">View Bill Details</h1>  
+
+    <!-- Home Button -->
+    <div class="d-flex justify-content-start mb-3">
+        <a href="{% url 'staff_dashboard' %}" class="btn btn-warning">Home</a>
+    </div>
+
+    <div class="card mx-auto shadow-lg" style="max-width: 600px;">
+        <div class="card-body">
+            <h2 class="card-title text-center">Bill ID: {{ bill.bill_id }}</h2>
+            
+            <div class="mb-3">
+                <strong>Amount:</strong> RM {{ bill.amount }}
+            </div>
+
+            <div class="mb-3">
+                <strong>Due Date:</strong> {{ bill.due_date }}
+            </div>
+
+            <div class="mb-3">
+                <strong>Status:</strong> 
+                {% if bill.paid %}
+                    <span class="badge bg-success">Paid</span>
+                {% else %}
+                    <span class="badge bg-danger">Unpaid</span>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <strong>Penalty Fee:</strong> RM {{ bill.penalty_fee }}
+            </div>
+
+            <div class="mb-3">
+                <strong>Customer:</strong> {{ bill.customer.customer_name }}
+            </div>
+
+            <div class="mb-3">
+                <strong>Email:</strong> {{ bill.customer.customer_email }}
+            </div>
+
+            <div class="mb-3">
+                <strong>Phone:</strong> {{ bill.customer.customer_number }}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">&copy; 2025 Electricity Billing System. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock %}
