@@ -1,6 +1,9 @@
 # ⚡ Electricity Billing System
 Comprehensive solution aimed at improving the management of electricity services. It facilitates effective communication and coordination among key stakeholders, including customers, utility providers, support administrators, and staff. The system ensures secure user registration and authentication, accurate billing calculations, smooth payment processing, and comprehensive customer support.
 
+## 💻 Tech Stack
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+
 ## 🛠️ Use Cases
 - System Registration
 - Log in to the System
@@ -17,7 +20,7 @@ Comprehensive solution aimed at improving the management of electricity services
 - Manage Customer Accounts
 - Track Overdue Bills
 - Usage Monitoring
-> **Note:** Each component is explained in detail in [Proj_PIII_T10L_G2_Yousef, Aamena, Faiz, Cheng.pdf](Proj_PIII_T10L_G2_Yousef, Aamena, Faiz, Cheng.pdf), including supporting diagrams such as sequence and activity diagrams.
+> **Note:** Each component is explained in detail in [Proj_PIII_T10L_G2_Yousef, Aamena, Faiz, Cheng.pdf](Proj_PIII_T10L_G2_Yousef%2C%20Aamena%2C%20Faiz%2C%20Cheng.pdf), including supporting diagrams such as sequence and activity diagrams.
 
 ## 🚀 Run Locally
 1. Clone the repository
@@ -41,3 +44,5 @@ Comprehensive solution aimed at improving the management of electricity services
    python manage.py runserver
    ```
 5. Open <http://127.0.0.1:8000/> and use the system
+
+[![](https://visitcount.itsvg.in/api?id=imy1l&icon=0&color=0)](https://visitcount.itsvg.in)
