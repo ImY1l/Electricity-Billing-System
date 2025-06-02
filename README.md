@@ -1,12 +1,23 @@
 # ⚡ Electricity Billing System
-This is a web-based Electricity Billing System built with Python and Django. It provides an interface for customers, staff, support admins, and Utility Providers for administrators to manage customers, record electricity usage, and generate bills. Designed for academic purposes, this system showcases practical use of web frameworks in utility billing.
+Comprehensive solution aimed at improving the management of electricity services. It facilitates effective communication and coordination among key stakeholders, including customers, utility providers, support administrators, and staff. The system ensures secure user registration and authentication, accurate billing calculations, smooth payment processing, and comprehensive customer support.
 
-## 🛠️ Features
-- Admin login and authentication
-- Customer management (add/update/delete)
-- Electricity usage input and billing calculation
-- Auto-generated billing reports
-- SQLite-backed persistent storage
+## 🛠️ Use Cases
+- System Registration
+- Log in to the System
+- Reset Password
+- Make a Payment and Receive Payment Receipt
+- View Bill Details
+- Update Meter Reading and Tariff
+- Track Overdue Bills
+- Generate Monthly Bills
+- Submit Feedback
+- View Customer Bills
+- View Customer Feedback and Analysis
+- Submit and Resolve Customer Issue
+- Manage Customer Accounts
+- Track Overdue Bills
+- Usage Monitoring
+> **Note:** Each component is explained in detail in [Proj_PIII_T10L_G2_Yousef.pdf](Proj_PIII_T10L_G2_Yousef.pdf), including supporting diagrams such as sequence and activity diagrams.
 
 ## 🚀 Run Locally
 1. Clone the repository
