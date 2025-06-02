@@ -20,7 +20,7 @@ Comprehensive solution aimed at improving the management of electricity services
 - Manage Customer Accounts
 - Track Overdue Bills
 - Usage Monitoring
-> **Note:** Each component is explained in detail in [Proj_PIII_T10L_G2_Yousef, Aamena, Faiz, Cheng.pdf](Proj_PIII_T10L_G2_Yousef%2C%20Aamena%2C%20Faiz%2C%20Cheng.pdf), including supporting diagrams such as sequence and activity diagrams.
+> **Note:** Each use case is explained in details in [Proj_PIII_T10L_G2_Yousef, Aamena, Faiz, Cheng.pdf](Proj_PIII_T10L_G2_Yousef%2C%20Aamena%2C%20Faiz%2C%20Cheng.pdf), including supporting diagrams such as sequence and activity diagrams.
 
 ## 🚀 Run Locally
 1. Clone the repository
