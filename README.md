@@ -2,11 +2,11 @@
 This is a web-based Electricity Billing System built with Python and Django. It provides an interface for customers, admins, and utility providersfor administrators to manage customers, record electricity usage, and generate bills. Designed for academic purposes, this system showcases practical use of web frameworks in utility billing.
 
 ## 🛠️ Features
-- 🔐 Admin login and authentication
-- 👥 Customer management (add/update/delete)
-- 💡 Electricity usage input and billing calculation
-- 📄 Auto-generated billing reports
-- 🗂️ SQLite-backed persistent storage
+- Admin login and authentication
+- Customer management (add/update/delete)
+- Electricity usage input and billing calculation
+- Auto-generated billing reports
+- SQLite-backed persistent storage
 
 ## 🚀 Run Locally
 1. Clone the repository
@@ -18,6 +18,9 @@ This is a web-based Electricity Billing System built with Python and Django. It 
    python -m venv venv
    venv\Scripts\activate
    ```
+
+> **Note:** Between steps 2 and 3, you may need to run `pip install django` if you don't have the required dependencies.
+
 3. Run migrations
    ```bash
    python manage.py migrate
@@ -27,5 +30,3 @@ This is a web-based Electricity Billing System built with Python and Django. It 
    python manage.py runserver
    ```
 5. Open <http://127.0.0.1:8000/> and use the system
-
-> **Note:** between 2. and 3. you may need to ```bash pip install django ``` if tou don't have the needed dependencies.
